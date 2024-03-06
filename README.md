@@ -1,2 +1,2 @@
-# racunarstvo_u_oblaku
-Predmet Racunarstovo u oblaku
+# Racunarstvo u oblaku
+Kod sa predmeta - Racunarstvo u oblaku
