@@ -1,0 +1,40 @@
+version: "3.7"
+services:
+  employeemanager:
+    image: employeemanager
+    restart: always
+    ports:
+      - 8080:8080
+    networks:
+      - springapimysql-net
+    environment:
+      - spring.datasource.url=jdbc:mysql://mysqldb:3306/employeemanager
+    depends_on:
+      - mysqldb
+    volumes:
+      - .m2:/root/.m2
+
+  mysqldb:
+    image: vgeroski/vezba2-db
+    restart: always
+    ports:
+      - 3306:3306
+    networks:
+      - springapimysql-net
+    environment:
+      MYSQL_DATABASE: employeemanager
+      MYSQL_USER: vlada
+      MYSQL_PASSWORD: password
+      MYSQL_ROOT_PASSWORD: password
+      
+  front-app:
+    image: front-app
+    ports:
+      - 4200:4200
+    depends_on:
+      - employeemanager
+    networks:
+      - springapimysql-net
+      
+networks:
+  springapimysql-net:

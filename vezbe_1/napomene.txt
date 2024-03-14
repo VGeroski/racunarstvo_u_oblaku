@@ -1,0 +1,37 @@
+Beleske:
+
+docker pull busybox (povlacimo busybox sliku sa Docker registrija i cuvamo na nas sistem)
+
+docker images (lista sve slike koje su na nasem sistemu)
+
+docker run busybox (pokretanje slike i pravljenje kontejnera)
+docker run busybox echo "hello from busybox"
+
+docker ps (prikaz svih kontejnera koji su aktivni)
+docker ps -a (lista svih pokretanih kontejnera)
+
+docker run -it busybox sh (-it: interaktivni mod)
+
+docker rm <container id> (brisanje kontejnera)
+docker rm $(docker ps -a -q -f status=exited) (brisanje svih kontejnera koji vise nisu aktivni)
+docker container prune (brisanje kontejnera koji nisu aktivni)
+
+docker rmi <image id> (brisanje slika)
+
+----------------------------------------------------
+
+docker run --rm -it prakhar1989/static-site (skidanje slike sa docker hub-a prakhar1989/static-site, --rm flag da ce kontejner odmah da se obrise nakon izlaska)
+
+docker run -d -P --name static-site prakhar1989/static-site (pokretanje u detach modu, ali sad exposujemo portove da bismo mogli da pristupimo sajtu,
+--name static-site dajemo ime kontejneru)
+
+docker port static-site (ocitavamo sve dostupne portove)
+
+docker run -p 8888:80 prakhar1989/static-site (-p dajemo znak da mapiramo port 80 na 8888)
+
+docker stop static-site (zaustavljamo kontejner, moze i preko kontejnern id-a)
+
+----------------------------------------------------
+docker build -t demoapi . (pravljenje slike Dockerfile mora da bude napravljen)
+docker run -p -d 8000:8080 demoapi
+
