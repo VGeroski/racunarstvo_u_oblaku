@@ -1,0 +1,3 @@
+Kreiranje slika:
+za employeemanager: docker build -t employeemanager .
+za front: docker build -t front-app .
