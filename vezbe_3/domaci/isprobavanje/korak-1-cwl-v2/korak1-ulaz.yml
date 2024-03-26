@@ -1,0 +1,6 @@
+script:
+  class: File
+  path: ucitavanje.py
+csvFile:
+  class: File
+  path: HousingData.csv

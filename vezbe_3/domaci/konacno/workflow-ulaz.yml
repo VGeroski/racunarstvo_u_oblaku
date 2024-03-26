@@ -1,0 +1,5 @@
+csvFile:
+  class: File
+  path: korak-1/HousingData.csv
+kolona: 'MEDV'
+procenat_trening: 0.8

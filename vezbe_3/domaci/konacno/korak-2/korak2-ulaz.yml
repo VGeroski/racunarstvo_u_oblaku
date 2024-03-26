@@ -1,0 +1,6 @@
+csvIn:
+  class: File
+  path: ../korak-1/output.csv
+
+kolona: 'TEST'
+procenat_trening: 0.8
