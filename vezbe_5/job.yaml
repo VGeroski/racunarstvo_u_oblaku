@@ -1,0 +1,32 @@
+apiVersion: batch/v1
+kind: Job
+metadata:
+  name: vezba-5-job
+spec:
+  # Ukupan broj paralelnih Job-ova koje želimo da pokrenemo (jedan za svaki fold)
+  parallelism: 5
+  # Ukupan broj Job-ova koji moraju biti kompletirani
+  completions: 5
+  completionMode: Indexed
+  template:
+    spec:
+      containers:
+      - name: kfold-container
+        image: vgeroski/vezba5-kfold:latest
+        envFrom:
+        - configMapRef:
+            name: vezba-5
+        env:
+        - name: FOLD_INDEX
+          valueFrom:
+            fieldRef:
+              fieldPath: metadata.annotations['batch.kubernetes.io/job-completion-index']
+        volumeMounts:
+        - name: csv-data
+          mountPath: /data
+      restartPolicy: Never
+      volumes:
+      - name: csv-data
+        hostPath:
+          path: "/csv_folder"
+  backoffLimit: 4

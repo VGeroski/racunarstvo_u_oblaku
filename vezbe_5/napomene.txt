@@ -1,0 +1,18 @@
+pokretanje doker slike:
+docker run --rm -v "$(pwd)/csv_folder":/data -e CSV_FILE=/data/HousingData.csv -e TARGET_COLUMN=MEDV -e FOLD_INDEX=0 -e K=5 vgeroski/vezba5-kfold
+
+-v da bismo napravili volume i prebacili iz lokalnog foldera csv_folder u folder na kontejneru (data).
+putanje do csv-a zatim dajemo u odnosu na lokaciju na kontejneru
+
+slicno i preko compose yaml fajla, gde imamo jedan servis, dajemo kako se zove image i dajemo ime kontejneru radi lakseg nalazaenj posle. 
+kada menjamo nesto u docker-compose.yaml obavezno prvo uradimo docker-compose down, promenimo, pa tek onda docker-compose up
+
+csv_folder mora da se nalazi na cluster-u (odnosno za minikube mora da se iskopira na minikube vm):
+minikube ssh
+mkdir -p csv_folder
+exit
+
+i onda se preko minikube cp -od -do iskopira csv fajl
+
+da bi imao indexiranje mora da bude completions Indexed, u suprotnom nema JOB_COMPLETION_INDEX.
+https://kubernetes.io/docs/tasks/job/indexed-parallel-processing-static/

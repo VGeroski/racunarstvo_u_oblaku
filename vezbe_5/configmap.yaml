@@ -1,0 +1,8 @@
+apiVersion: v1
+kind: ConfigMap
+metadata:
+  name: vezba-5
+data:
+  CSV_FILE: "/data/HousingData.csv"
+  TARGET_COLUMN: "MEDV"
+  K: "5"

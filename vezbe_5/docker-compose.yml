@@ -1,0 +1,14 @@
+version: '3.8'
+
+services:
+  kfold-validacija:
+    image: vgeroski/vezba5-kfold
+    container_name: kfold-container
+    environment:
+      - CSV_FILE=/data/HousingData.csv
+      - TARGET_COLUMN=MEDV
+      - K=5
+      - FOLD_INDEX=2
+    volumes:
+      - ./csv_folder:/data
+    restart: 'no'
