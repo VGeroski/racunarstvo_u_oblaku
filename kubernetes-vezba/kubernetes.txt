@@ -1,0 +1,13 @@
+kreiranje namespace-a: 
+- kubectl create namespace vladimirg
+
+dohvatanje namespace-a:
+- kubectl get namespaces
+
+whoami - bash vraca koji je korisnik
+
+u fajlu .bashrc mozemo da imamo skracenice:
+- alias k="kubectl -n vladimirg" -> ovo je skracenica da smo odmah u vladimirg namespace-u
+
+listanje podova (u namespace vladimirg sa skracenicom k)
+- k get pods:
