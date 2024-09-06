@@ -1,0 +1,22 @@
+Nakon kreiranja deploymenta, potrebno je eksponirati aplikaciju:
+- kubectl expose deployment.apps/vezba6-flask-deployment --type="NodePort" --port 5000
+
+url:
+minikube service vezba6-flask-deployment --url
+
+testiranje:
+POST http://<minikube_ip>:<node_port>/train
+{
+    "activation": "relu",
+    "solver": "adam"
+}
+
+nakon toga mozemo da radimo predikciju
+POST http://<minikube_ip>:<node_port>/predict
+{
+    "features": [6.7, 0.19, 0.36, 1.1, 0.026, 63, 143, 0.9912, 3.2, 0.48, 11, 6]
+}
+
+Ako je problem sa mount-ovanjem:
+- navesti uvek storageClass, povecati kapacitet, menjati lokacije na hostu
+- proveriti da li su pv i pvc u statusu Bound. Ako je status kod jednog Available - problem! (jeste dostupno, ali nije povezano)

@@ -1,0 +1,14 @@
+apiVersion: v1
+kind: PersistentVolume
+metadata:
+  name: pv-volume
+  labels:
+    type: local
+spec:
+  storageClassName: manual
+  capacity:
+    storage: 2Gi # nekad ne kopira sve, zato je stavljeno 2 GB umesto 1
+  accessModes:
+    - ReadWriteOnce
+  hostPath:
+    path: "/home/data/" # putanja na hostu (na minikube ssh - mkdir -p /home/data/)

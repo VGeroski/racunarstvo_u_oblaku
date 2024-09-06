@@ -1,0 +1,26 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: vezba6-flask-deployment
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: vezba6-flask-deployment
+  template:
+    metadata:
+      labels:
+        app: vezba6-flask-deployment
+    spec:
+      volumes:
+        - name: pv-storage
+          persistentVolumeClaim:
+            claimName: pv-claim
+      containers:
+        - name: vezba6-flask-container
+          image: vgeroski/vezba6-ml-flask
+          ports:
+            - containerPort: 5000
+          volumeMounts:
+            - mountPath: /mnt/data # lokacija u pod-u
+              name: pv-storage
