@@ -1,0 +1,5 @@
+nakon kreiranja servisa za frontend, on ima i dalje ClusterIP, tako da moramo da prebacimo port
+kubectl port-forward svc/frontend 8080:80
+
+da bismo u lokalu mogli da pokrenemo (iz brauzera - localhost:8080).
+https://kubernetes.io/docs/tutorials/stateless-application/guestbook/
