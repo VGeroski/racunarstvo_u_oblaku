@@ -10,4 +10,7 @@ u fajlu .bashrc mozemo da imamo skracenice:
 - alias k="kubectl -n vladimirg" -> ovo je skracenica da smo odmah u vladimirg namespace-u
 
 listanje podova (u namespace vladimirg sa skracenicom k)
-- k get pods:
+- k get pods
+
+ulazak u pod
+- kubectl exec -it redis -- bash
