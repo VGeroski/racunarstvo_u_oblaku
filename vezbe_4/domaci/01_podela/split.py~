@@ -1,0 +1,37 @@
+import pandas as pd
+from sklearn.model_selection import KFold
+import sys
+
+# Učitaj argumente
+csv_file = sys.argv[1]
+target_column = sys.argv[2]
+k_folds = int(sys.argv[3])
+
+# Učitaj dataset
+data = pd.read_csv(csv_file)
+
+# popunjavanje nedostajucih vrednosti (prosecna za tu kolonu)
+data = data.fillna(data.mean())
+
+# uklanjanje kolone sa visokom korelacijom
+data.drop(columns = ['RAD'], inplace=True)
+
+# Kreiraj K-fold objekte
+kf = KFold(n_splits=k_folds, shuffle=True, random_state=42)
+
+fold_num = 1
+for train_index, test_index in kf.split(data):
+    train_data = data.iloc[train_index]
+    test_data = data.iloc[test_index]
+    
+    # Sačuvaj foldove kao CSV fajlove
+    # /app/data dodato samo za lokalno testiranje zbog volume za doker
+    train_file = f"/app/data/train_fold_{fold_num}.csv"
+    test_file = f"/app/data/test_fold_{fold_num}.csv"
+#    train_file = f"train_fold_{fold_num}.csv"
+#    test_file = f"test_fold_{fold_num}.csv"
+    
+    train_data.to_csv(train_file, index=False)
+    test_data.to_csv(test_file, index=False)
+    
+    fold_num += 1

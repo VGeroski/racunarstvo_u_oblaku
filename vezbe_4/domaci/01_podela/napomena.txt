@@ -1,0 +1,2 @@
+lokalno pokretanje samo preko docker slike (samo za test)
+docker run -v "$(pwd)/data":/app/data vgeroski/vezba4-podela /app/data/HousingData.csv "MEDV" 5
