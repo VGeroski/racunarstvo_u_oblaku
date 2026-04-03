@@ -2,17 +2,29 @@
 
 ## Dokumentacija
 https://docs.docker.com/engine/reference/builder/#from
+
 https://docs.docker.com/engine/reference/builder/#copy
+
 https://docs.docker.com/engine/reference/builder/#add
+
 https://docs.docker.com/engine/reference/builder/#run
+
 https://docs.docker.com/engine/reference/builder/#cmd
+
 https://docs.docker.com/engine/reference/builder/#expose
+
 https://docs.docker.com/engine/reference/builder/#user
+
 https://docs.docker.com/engine/reference/builder/#workdir
+
 https://docs.docker.com/engine/reference/builder/#dockerignore-file
+
 https://docs.docker.com/develop/develop-images/dockerfile_best-practices/#add-or-copy
+
 https://docs.docker.com/develop/develop-images/dockerfile_best-practices/#entrypoint
+
 https://docs.docker.com/develop/develop-images/dockerfile_best-practices/#volume
+
 https://docs.docker.com/config/labels-custom-metadata/
 
 ## Primer - Dockerfile i prekompajlirana aplikacija
@@ -54,7 +66,7 @@ Pokretanje preko web umesto jar fajla:
 `docker run -p 9001:8080 -it --rm my-web-app`
 
 ## Primer - Dockerfile i build preko Maven i Gradle
-Kada imamo izvorni kod, a hocemo da ga buildujemo unutar kontejnera, mozemo da koristimo maven il gradle za build.
+Kada imamo izvorni kod, a hocemo da ga buildujemo unutar kontejnera, mozemo da koristimo maven ili gradle za build.
 
 ### Maven primer
 Primer za maven, napravimo maven. Napravili smo dva sloja u kontejneru jedan za pom i jedan za source. Ako se pom.xml promeni, maven ce da build-a sve, medjutim ako se promeni samo source, onda necemo opet da dovlacimo sve dependency. Dockerfile:
